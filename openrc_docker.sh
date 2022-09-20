@@ -16,6 +16,8 @@ rc-status
 
 #Run docker
 service docker restart
+#wait for docker status
+sleep 2
 docker version
 
 
