@@ -5,7 +5,7 @@
 #	- miwifi pppoe 拨号时不时无故断网，通过重启pppd 实现自动重拨;
 #	- 使用crontab 代替 sleep, 每12分钟检查一次;
 #	- 日志输出至同一文件夹下;
-#*/2 * * * * sh /tmp/bobby4kit/miwifi_reboot_pppd.sh >/tmp/bobby4kit/cron.log 2>&1
+#*/12 * * * * sh /tmp/bobby4kit/miwifi_reboot_pppd.sh >/tmp/bobby4kit/cron.log 2>&1
 # Author：bobby
 # E-mail: bobby4kit@outlook.com
 # Time：2022-10-04 22:37 CST
@@ -61,17 +61,19 @@ check_ping() {
 
 start(){
 	local rtl=""
+	local ttime=`date +"%Y-%m-%d %H:%M:%S"`
+	
 	#while [ 1 ]; do
 	check_ping
 	rtl=$?
 	
 	if [ "$rtl" != "0" ]; then
-		echo " restart deamon start "
+		echo "$ttime restart deamon start "
 		kill_deamon
 		#sysinit may do start
 		#start_deamon
 	else
-		echo " ping gateway[$IP] be connect "
+		echo "$ttime ping gateway[$IP] be connect "
 		#sleep 600;
 	fi
 	#done
