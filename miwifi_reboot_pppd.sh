@@ -5,7 +5,7 @@
 #	- miwifi pppoe 拨号时不时无故断网，通过重启pppd 实现自动重拨;
 #	- 使用crontab 代替 sleep, 每12分钟检查一次;
 #	- 日志输出至同一文件夹下;
-#*/12 * * * * sh /tmp/bobby4kit/miwifi_reboot_pppd.sh >/tmp/bobby4kit/cron.log 2>&1
+#*/5 * * * * sh /etc/bobby4kit/miwifi_reboot_pppd.sh >/tmp/bobby4kit.log 2>&1
 # Author：bobby
 # E-mail: bobby4kit@outlook.com
 # Time：2022-10-04 22:37 CST
