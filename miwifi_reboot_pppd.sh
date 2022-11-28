@@ -13,15 +13,19 @@
 #----------------------------------------------------------------*/
 
 #get gateway ip
-IP=`route | grep 'default' | awk 'NR==1 {print $2}'`
+#IP=`route | grep 'default' | awk 'NR==1 {print $2}'`
+IP='www.baidu.com'
 PPOEUSER='12340987'
 
 kill_deamon() {
-	killall pppd
+	#killall pppd
+	#/etc/init.d/network restart
+	ifdown wan
 }
 
 start_deamon(){
-	/usr/sbin/pppd nodetach ipparam wan ifname pppoe-wan nodefaultroute usepeerdns persist maxfail 1 user $PPOEUSER
+	#/usr/sbin/pppd nodetach ipparam wan ifname pppoe-wan nodefaultroute usepeerdns persist maxfail 1 user $PPOEUSER
+	ifup wan
 }
 
 check_ping() {
@@ -71,7 +75,7 @@ start(){
 		echo "$ttime restart deamon start "
 		kill_deamon
 		#sysinit may do start
-		#start_deamon
+		start_deamon
 	else
 		echo "$ttime ping gateway[$IP] be connect "
 		#sleep 600;
