@@ -74,6 +74,7 @@ start(){
 	if [ "$rtl" != "0" ]; then
 		echo "$ttime restart deamon start "
 		kill_deamon
+		sleep 10;
 		#sysinit may do start
 		start_deamon
 	else
